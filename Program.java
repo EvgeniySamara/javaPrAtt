@@ -10,14 +10,11 @@ public class Program{
     private Map<String, Integer> wordFrequency;
     private String longestWord;
 
-    public FileLoader(String filePath) {
+    public Program() {
         words = new ArrayList<>();
         wordFrequency = new HashMap<>();
         longestWord = "";
 
-        loadFromFile(filePath);
-        calculateWordFrequency();
-        findLongestWord();
     }
 
     private void loadFromFile(String filePath) {
@@ -27,12 +24,12 @@ public class Program{
 
             while (scanner.hasNext()) {
                 String word = scanner.next();
-                words.add(word);
+                this.words.add(word);
             }
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filePath);
+            System.out.println("Файл не найден: " + filePath);
         }
     }
 
@@ -50,15 +47,32 @@ public class Program{
         }
     }
 
-    public ArrayList<String> getWords() {
-        return words;
-    }
 
     public Map<String, Integer> getWordFrequency() {
         return wordFrequency;
     }
 
-    public String getLongestWord() {
-        return longestWord;
+    public void printWords()
+    {
+
+        for (String word: words)
+        {
+            System.out.println(word);
+
+        }
     }
+
+    public ArrayList<String> getWords() {
+        return words;
+    }
+
+    public static void main(String[] args) {
+        Program prog = new Program();
+        prog.loadFromFile("input.txt");
+        prog.printWords();
+//        calculateWordFrequency();
+//        findLongestWord();
+
+    }
+
 }
