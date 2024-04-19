@@ -37,6 +37,12 @@ public class Program{
         for (String word : words) {
             wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
         }
+
+        for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+            String word = entry.getKey();
+            int frequency = entry.getValue();
+            System.out.println("Фрукт: " + word + ", Коллличество: " + frequency);
+        }
     }
 
     private void findLongestWord() {
@@ -69,9 +75,20 @@ public class Program{
     public static void main(String[] args) {
         Program prog = new Program();
         prog.loadFromFile("input.txt");
-        prog.printWords();
-//        calculateWordFrequency();
-//        findLongestWord();
+        //prog.printWords();
+        System.out.println();
+        System.out.print("Всего фруктов: ");
+        System.out.println(prog.getWords().size());
+        System.out.println();
+        System.out.println("Разбивка по количеству: ");
+        prog.calculateWordFrequency();
+
+        System.out.println();
+        System.out.print("Самый 'длинный' фрукт: ");
+
+        prog.findLongestWord();
+        System.out.println(prog.longestWord);
+
 
     }
 
